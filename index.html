@@ -1,1 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
 
+let humanscore = 0;
+let computerscore = 0;
+
+function getcomputerchoice() {
+    const random = Math.random();
+
+    if (random < 0.33) {
+        return "Rock";
+    } else if (random < 0.66) {
+        return "Paper";
+    } else {
+        return "Scissors"
+    }
+}
+
+function gethumanchoice() {
+    let answer = prompt("Rock, Paper, Scissors ?");
+    if (answer.toLowerCase() === "rock") {
+        return "Rock";
+    } if (answer.toLowerCase() === "paper") {
+        return "Paper";
+    } if (answer.toLowerCase() === "scissors") {
+        return "Scissors";
+    } else {
+        alert("Réponse non valide ! Veuillez choisir Rock, Paper ou Scissors.");
+        return gethumanchoice();
+    }
+}
+
+function playround(humanchoice, computerchoice) {
+    if (humanchoice === computerchoice) {
+        return "Egalité";
+    }
+
+    if (humanchoice === "Rock") {
+        if (computerchoice === "Scissors") {
+            humanscore++;
+            return "Human win! Rock beats Scissors";
+        } else {
+            computerscore++;
+            return "Computer win! Paper beats Rock";
+        }
+    }
+
+    if (humanchoice === "Paper") {
+        if (computerchoice === "Rock") {
+            humanscore++;
+            return "Human win! Paper beats Rock";
+        } else {
+            computerscore++;
+            return "Computer win! Scissors beats Paper";
+        }
+    }
+
+    if (humanchoice === "Scissors") {
+        if (computerchoice === "Paper") {
+            humanscore++;
+            return "Human win! Scissors beats Paper";
+        } else {
+            computerscore++;
+            return "Computer win! Rock beats Scissors";
+        }
+    }
+}
+
+function playgame() {
+        let humanscore = 0;
+        let computerscore = 0;
+
+        for (let i = 0; i < 5; i++) {
+            const humanSelection = gethumanchoice();
+            const computerSelection = getcomputerchoice(); // Corrigé ici
+            
+            console.log(playround(humanSelection, computerSelection));
+            
+            console.log("Score humain : " + humanscore);
+            console.log("Score ordinateur : " + computerscore);
+        }
+
+        // Ajouter la déclaration du gagnant final
+        if (humanscore > computerscore) {
+            console.log("Tu as gagné le jeu !");
+        } else if (computerscore > humanscore) {
+            console.log("L'ordinateur a gagné le jeu !");
+        } else {
+            console.log("Match nul !");
+        }
+    }
+
+    playgame();
+
+    </script>
+</body>
+</html>
